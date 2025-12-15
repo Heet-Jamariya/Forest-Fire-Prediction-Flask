@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forest Fire Prediction Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; padding: 20px; }
+        .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 400px; }
+        h2 { text-align: center; color: #333; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #218838; }
+        .result { margin-top: 20px; text-align: center; font-size: 1.2em; font-weight: bold; color: #d9534f; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Forest Fire Predictor</h2>
+        
+        <form action="{{ url_for('predict_datapoint')}}" method="post">
+            <label>Temperature:</label>
+            <input type="number" step="any" name="Temperature" placeholder="Temperature" required>
+
+            <label>RH (Relative Humidity):</label>
+            <input type="number" step="any" name="RH" placeholder="RH" required>
+
+            <label>Ws (Wind Speed):</label>
+            <input type="number" step="any" name="Ws" placeholder="Ws" required>
+
+            <label>Rain:</label>
+            <input type="number" step="any" name="Rain" placeholder="Rain" required>
+
+            <label>FFMC:</label>
+            <input type="number" step="any" name="FFMC" placeholder="FFMC" required>
+
+            <label>DMC:</label>
+            <input type="number" step="any" name="DMC" placeholder="DMC" required>
+
+            <label>ISI:</label>
+            <input type="number" step="any" name="ISI" placeholder="ISI" required>
+
+            <label>Classes:</label>
+            <input type="number" step="any" name="Classes" placeholder="Classes" required>
+
+            <label>Region:</label>
+            <input type="number" step="any" name="Region" placeholder="Region" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <div class="result">
+            {% if results %}
+                The prediction is: {{ results }}
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+</html>
